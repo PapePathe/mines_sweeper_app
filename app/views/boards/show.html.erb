@@ -1,0 +1,20 @@
+<div class="container mx-auto">
+  <%= @board.email %>
+  <%= @board.name %>
+
+  <table class='table table-borderless table-responsive table-collapsed'>
+    <tbody>
+      <% @board.data.each do |row| %>
+        <tr class='display-4'>
+          <% row.each do |col| %>
+            <% if col.odd? %>
+              <td class='text-center'>💣</td>
+            <% else %>
+              <td class='text-center bg-light'> </td>
+            <% end %>
+          <% end %>
+          <tr>
+       <% end %>
+    </tbody>
+    </ttable>
+</div>

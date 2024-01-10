@@ -1,0 +1,10 @@
+<h1>Dashboard#index</h1>
+<%= form_with model: nil, url: boards_path do |form| %>
+  <%= form.email_field :email, placeholder: 'email' %>
+  <%= form.number_field :board_width, placeholder: 'board width' %>
+  <%= form.number_field :board_height, placeholder: 'board height' %>
+  <%= form.number_field :number_of_mines, placeholder: 'number of mines' %>
+  <%= form.text_field :board_name, placeholder: 'board name' %>
+
+  <%= form.submit "Generate Board" %>
+<% end %>

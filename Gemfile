@@ -63,3 +63,5 @@ end
 
 gem "rspec", "~> 3.12"
 gem "rspec-rails", "~> 6.1"
+
+gem "capybara", "~> 3.39"
