@@ -65,3 +65,7 @@ gem "rspec", "~> 3.12"
 gem "rspec-rails", "~> 6.1"
 
 gem "capybara", "~> 3.39"
+
+gem "factory_bot_rails", "~> 6.4", :group => :development
+gem "faker", "~> 3.2", :group => :development
+gem "test", "~> 1.0", :group => :development
