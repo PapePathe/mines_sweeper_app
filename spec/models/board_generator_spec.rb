@@ -15,11 +15,11 @@ RSpec.describe BoardGenerator do
   end
 
   it "generates a board" do # W: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    Board = Struct.new(:mines_count, :rows, :columns) # W: has no descriptive comment
+     TestBoard = Struct.new(:mines_count, :rows, :columns) # W: has no descriptive comment
     [
-      Board.new(mines_count: 14, rows: 5, columns: 5),
-      Board.new(mines_count: 500, rows: 50, columns: 50),
-      Board.new(mines_count: 5000, rows: 500, columns: 4000)
+     TestBoard.new(mines_count: 14, rows: 5, columns: 5),
+     TestBoard.new(mines_count: 500, rows: 50, columns: 50),
+     TestBoard.new(mines_count: 5000, rows: 500, columns: 4000)
     ].each do |test|
       result = instance.generate(test.rows, test.columns, test.mines_count)
       expect(result.length).to eq(test.rows)
