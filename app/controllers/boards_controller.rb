@@ -1,21 +1,17 @@
 class BoardsController < ApplicationController
+
+  rescue_from InvalidArgument do |e|
+    flash[:error] = e.message
+    redirect_to root_path
+  end
+
   def create
-    data = generator.generate(
-      board_request[:board_width].to_i,
-      board_request[:board_height].to_i,
-      board_request[:number_of_mines].to_i
-    )
+    result = BoardService.new.create_board(board_request)
 
-    board = Board.new(
-      email: board_request[:email],
-      name: board_request[:board_name],
-      number_of_mines: board_request[:email],
-      data: data,
-    )
-
-    board.save
-
-    redirect_to board_path(board)
+    if result.success?
+      redirect_to board_path(result.board)
+    else
+    end
   end
 
   def show
@@ -23,10 +19,6 @@ class BoardsController < ApplicationController
   end
 
   private
-
-  def generator
-    BoardGenerator.new
-  end
 
   def board_request
     params.permit(:email, :board_width, :board_height, :board_name, :number_of_mines)
