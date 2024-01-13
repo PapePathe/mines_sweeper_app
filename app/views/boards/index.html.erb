@@ -1,0 +1,58 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb my-2">
+    <li class="breadcrumb-item" aria-current="page">
+      <%= link_to "Home", root_path %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Boards</li>
+  </ol>
+</nav>
+
+<h1 class='card-title'>All boards</h1>
+
+<div class="card">
+  <div class="card-body">
+    <h3 class='card-title'>Search</h3>
+    <%= form_with model: nil, url: boards_path, method: :get do |form| %>
+      <div class='row'>
+        <div class='col'>
+          <%= form.email_field  :by_email, placeholder: 'email', class: 'form-control' %>
+        </div>
+        <div class='col'>
+          <%= form.number_field :by_number_of_mines, placeholder: 'number of mines', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class='text-center my-3'>
+        <%= form.submit :search, class: 'btn btn-primary' %>
+        <%= link_to :reset, boards_path, class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="card mt-5">
+  <div class="card-body">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Mines</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recent_boards.each do |board| %>
+          <tr>
+            <td><%= l board.created_at, format: :short %></td>
+            <td><%= board.number_of_mines %></td>
+            <td><%= board.name %></td>
+            <td><%= board.email %></td>
+            <td><%= link_to "View", board_path(board) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

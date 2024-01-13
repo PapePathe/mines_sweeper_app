@@ -47,4 +47,29 @@ RSpec.describe "Dashboards", type: :system do
     expect(page).to have_content("pathe.sene@gmail.com")
     expect(page).to have_content("test board")
   end
+
+  it 'can view latest boards' do
+    boards = FactoryBot.create_list :board, 10
+    visit root_path
+
+    boards.each do |board|
+      expect(page).to have_content(board.name)
+      expect(page).to have_content(board.email)
+      expect(page).to have_link(href:board_path( board))
+    end
+
+    expect(page).to have_link("view all generated boards", href: "/boards")
+
+    click_link href: board_path(boards[0])
+    expect(current_path).to eq(board_path(boards[0]))
+  end
+
+  it 'can navigate to all boards page' do
+    boards = FactoryBot.create_list :board, 10
+    visit root_path
+
+    click_link href: boards_path
+    expect(current_path).to eq(boards_path)
+    expect(page).to have_content("All boards")
+  end
 end

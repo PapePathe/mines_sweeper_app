@@ -16,6 +16,12 @@
       <div><%= msg %></div>
     <% end %>
 
-    <%= yield %>
+    <div class='container mx-auto'>
+      <%= yield %>
+    </div>
+    <div class='container-fluid mx-auto'>
+      <%= yield :fluid_content %>
+    </div>
   </body>
+
 </html>

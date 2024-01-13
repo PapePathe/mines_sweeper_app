@@ -22,4 +22,3 @@ class BoardGenerator
     board
   end
 end
-class InvalidArgument < StandardError; end

@@ -1,8 +1,32 @@
-<div class="container mx-auto">
-  <%= @board.email %>
-  <%= @board.name %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb my-2">
+    <li class="breadcrumb-item" aria-current="page">
+      <%= link_to "Home", root_path %>
+    </li>
+    <li class="breadcrumb-item" aria-current="page">
+      <%= link_to "Boards", boards_path %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @board.name %></li>
+  </ol>
+</nav>
 
-  <table class='table table-borderless table-responsive table-collapsed'>
+<div class="card my-2">
+  <div class="card-body">
+    <h1>
+      <%= @board.name %>
+    <button type="button" class="btn btn-secondary position-relative">
+     Number of mines
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <%= @board.number_of_mines %>
+      </span>
+    </button>
+    </h1>
+    <%= @board.email %>
+  </div>
+</div>
+
+<% content_for :fluid_content do %>
+  <table class='table table-borderless table-collapsed'>
     <tbody>
       <% @board.data.each do |row| %>
         <tr class='display-4'>
@@ -16,5 +40,5 @@
           <tr>
           <% end %>
     </tbody>
-  </ttable>
-</div>
+  </table>
+<% end%>
