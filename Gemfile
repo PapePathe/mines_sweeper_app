@@ -66,3 +66,7 @@ group :development do
 end
 
 
+
+gem "brakeman", "~> 6.1"
+gem "bundler-audit", "~> 0.9.1"
+gem "rubocop", "~> 1.59"
