@@ -11,6 +11,7 @@ class Board < ApplicationRecord
   def self.search(search_params)
     results = where(nil)
     search_params.each do |key, value|
+      raise BoardSearchCriteriaNotFound unless results.respond_to?(key)
       results = results.public_send(key, value) if value.present?
     end
     results

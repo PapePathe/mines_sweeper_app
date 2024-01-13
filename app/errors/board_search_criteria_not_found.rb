@@ -1,0 +1,2 @@
+class BoardSearchCriteriaNotFound < StandardError
+end
