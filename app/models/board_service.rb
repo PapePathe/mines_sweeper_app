@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Manage board requests by calling the generator
 # and instrumenting with active support
 class BoardService
@@ -12,10 +14,10 @@ class BoardService
       email: board_request[:email],
       name: board_request[:board_name],
       number_of_mines: board_request[:number_of_mines],
-      data: data,
+      data:
     )
 
-    return Response.new(success?: true, board: board) if board.save
+    return Response.new(success?: true, board:) if board.save
 
     Response.new(success?: false, board: nil)
   end

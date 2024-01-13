@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Dashboards", type: :system do
+RSpec.describe 'Dashboards', type: :system do
   before do
     driven_by(:rack_test)
   end
@@ -51,7 +53,7 @@ RSpec.describe "Dashboards", type: :system do
     boards.each do |board|
       expect(page).to have_content(board.name)
       expect(page).to have_content(board.email)
-      expect(page).to have_link(href:board_path( board))
+      expect(page).to have_link(href: board_path(board))
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BoardsController < ApplicationController
   rescue_from InvalidArgument do |e|
     flash[:error] = e.message
@@ -6,16 +8,15 @@ class BoardsController < ApplicationController
 
   def index
     @recent_boards = Board.search(search_request)
-      .select(:id, :name, :email, :number_of_mines, :created_at)
+                          .select(:id, :name, :email, :number_of_mines, :created_at)
   end
 
   def create
     result = BoardService.new.create_board(board_request)
 
-    if result.success?
-      redirect_to board_path(result.board)
-    else
-    end
+    return unless result.success?
+
+    redirect_to board_path(result.board)
   end
 
   def show
