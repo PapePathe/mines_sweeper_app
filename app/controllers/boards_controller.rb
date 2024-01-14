@@ -14,9 +14,13 @@ class BoardsController < ApplicationController
   def create
     result = BoardService.new.create_board(board_request)
 
-    return unless result.success?
-
-    redirect_to board_path(result.board)
+    if result.success?
+      redirect_to board_path(result.board)
+    else
+      # TODO render the form with errors on fields for better UX.
+      flash[:error] = result.errors
+      redirect_to root_path
+    end
   end
 
   def show
