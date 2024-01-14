@@ -20,6 +20,11 @@ RSpec.describe 'Dashboards', type: :system do
   end
 
   it 'cannot create a with negative size' do
+    send_new_board_request('pathe.sene@gmail.com', [100, 80], 90, '')
+    expect(page).to have_content("Name can't be blank")
+  end
+
+  it 'cannot create a with negative size' do
     # Negative height
     send_new_board_request('pathe.sene@gmail.com', [100, -80], 90, 'test board')
 

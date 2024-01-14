@@ -12,11 +12,19 @@
   </head>
 
   <body>
-    <% flash.each do |type, msg| %>
-      <div><%= msg %></div>
-    <% end %>
-
     <div class='container mx-auto'>
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-danger mt-2" role="alert">
+          <% if msg.is_a?(Array) %>
+            <% msg.each do |m| %>
+              <p><%= m %></p>
+            <% end %>
+          <% else %>
+            <%= msg %>
+          <% end %>
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
     <div class='container-fluid mx-auto'>

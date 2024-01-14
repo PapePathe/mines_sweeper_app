@@ -30,6 +30,10 @@ module MinesweeperApp
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    ActiveSupport::Notifications.subscribe "minesweeper.generate_board" do |event|
+      Rails.logger.info "Generated board: duration=#{event.duration}ms height=#{event.payload[:h]} width=#{event.payload[:w]} number_field=#{event.payload[:m]} "
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

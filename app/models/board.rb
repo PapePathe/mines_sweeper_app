@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Board < ApplicationRecord
+  validates :name, presence: true
   validates :email, presence: true
   validates :data, presence: true
   validates :number_of_mines, presence: true, numericality: true
